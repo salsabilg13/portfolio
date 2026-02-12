@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio de Salsabil</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', sans-serif; }
+    body { background: #f0f4f8; color:#333; scroll-behavior:smooth; }
+
+    /* Header */
+    header {
+        background: linear-gradient(135deg,#ff758c,#ff7eb3);
+        padding:50px 20px; text-align:center; color:white; 
+        box-shadow:0 4px 20px rgba(0,0,0,0.1);
+        position: sticky; top:0; z-index:1000;
+    }
+    header img { width:150px; height:150px; border-radius:50%; object-fit:cover; border:4px solid white; margin-bottom:20px; transition: transform 0.3s; }
+    header img:hover { transform: scale(1.05); }
+    header h1 { font-size:2.2em; margin-bottom:10px; }
+    header p { font-size:1.2em; margin-bottom:20px; }
+    .buttons { display:flex; justify-content:center; gap:15px; flex-wrap: wrap; }
+    .buttons a {
+        background:#fff; color:#ff4c60; padding:12px 25px; border-radius:30px; font-weight:600;
+        transition: all 0.3s; box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    }
+    .buttons a:hover { background:#ff4c60; color:white; transform: translateY(-3px); box-shadow:0 8px 15px rgba(0,0,0,0.2); }
+
+    /* Sections */
+    section { padding:80px 20px; max-width:1000px; margin:auto; }
+    section h2 { font-size:2em; margin-bottom:40px; text-align:center; position:relative; }
+    section h2::after { content:""; width:80px; height:4px; background:#ff4c60; display:block; margin:10px auto 0; border-radius:2px; }
+
+    /* Cards */
+    .projects-container {
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+        gap:25px;
+    }
+    .card {
+        background:white; border-radius:15px; padding:25px; box-shadow:0 8px 25px rgba(0,0,0,0.1);
+        transition: transform 0.4s, box-shadow 0.4s;
+        position:relative;
+        overflow:hidden;
+    }
+    .card:hover { transform: translateY(-8px); box-shadow:0 15px 30px rgba(0,0,0,0.2); }
+    .card h3 { margin-bottom:10px; color:#ff4c60; }
+    .card p { color:#666; }
+
+    /* Contact */
+    .contact a {
+        display:inline-block; margin:0 10px; font-size:1.5em; color:#ff4c60;
+        transition: transform 0.3s, color 0.3s;
+    }
+    .contact a:hover { transform: scale(1.2); color:#ff1f4c; }
+
+    /* Scroll animation */
+    .fade-in { opacity:0; transform:translateY(20px); transition:opacity 0.8s ease-out, transform 0.8s ease-out; }
+    .fade-in.show { opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<header>
+    <img src="https://via.placeholder.com/150" alt="Photo de Salsabil">
+    <h1>Salsabil Gouasmia</h1>
+    <p>Étudiante en Informatique | Développeuse Web Junior</p>
+    <div class="buttons">
+        <a href="CV_Salsabil.pdf" download>📄 Télécharger CV</a>
+        <a href="https://www.linkedin.com/in/votreprofil" target="_blank">LinkedIn</a>
+        <a href="https://github.com/votreprofil" target="_blank">GitHub</a>
+    </div>
+</header>
+
+<section class="fade-in">
+    <h2>À propos de moi</h2>
+    <p>
+        Étudiante en Licence Informatique, passionnée par le développement web et la création de projets innovants. 
+        Je cherche à améliorer mes compétences et à contribuer à des projets professionnels.
+    </p>
+</section>
+
+<section class="fade-in">
+    <h2>Mes projets</h2>
+    <div class="projects-container">
+        <div class="card">
+            <h3>Projet 1</h3>
+            <p>Site web interactif développé avec HTML, CSS, JavaScript.</p>
+        </div>
+        <div class="card">
+            <h3>Projet 2</h3>
+            <p>Application web pour la gestion des tâches (PHP + MySQL).</p>
+        </div>
+        <div class="card">
+            <h3>Projet 3</h3>
+            <p>Mini-projet React pour apprendre les composants et le state.</p>
+        </div>
+    </div>
+</section>
+
+<section class="fade-in contact">
+    <h2>Contact</h2>
+    <p>📧 Email: salsabil@example.com</p>
+    <div>
+        <a href="https://www.linkedin.com/in/votreprofil" target="_blank">LinkedIn</a>
+        <a href="https://github.com/votreprofil" target="_blank">GitHub</a>
+    </div>
+</section>
+
+<script>
+const faders = document.querySelectorAll('.fade-in');
+const appearOptions = { threshold:0.3, rootMargin:"0px 0px -50px 0px" };
+const appearOnScroll = new IntersectionObserver(function(entries, observer){
+    entries.forEach(entry=>{
+        if(!entry.isIntersecting) return;
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target);
+    });
+}, appearOptions);
+faders.forEach(fader => appearOnScroll.observe(fader));
+</script>
+
+</body>
+</html>
